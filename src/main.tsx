@@ -13,3 +13,7 @@ createRoot(document.getElementById('root')!).render(
 // TODO: hacer un logout (10.08.2025)
 // TODO: hacer correctamente el deploy (10.08.2025)
 // TODO: src/hooks/useWebSocket.tsx (11.08.2025)
+// TODO: src/components/Notifications.tsx (13.08.2025)
+//  retries for websocket
+//  repair production websocket
+// TODO[MAIN]: fix production proxy, next time
