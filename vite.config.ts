@@ -29,9 +29,11 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api/, '')
         },
         '/ws': {
-          target: env.VITE_WS_HOST,
-          ws: true
-      }
-    },
+          target: env.VITE_WS_URL?.replace(/^ws:/, 'http:')?.replace(/^wss:/, 'https:') || 'http://localhost:8081',
+          ws: true,
+          changeOrigin: true
+        }
+      },
+    }
   }
-}})
+})

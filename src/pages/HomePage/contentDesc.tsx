@@ -70,13 +70,13 @@ export const MainContent = () => {
         const fetchData = async () => {
             try {
                 const jwtToken = localStorage.getItem("token")
-                const resProducts = await fetch('/api//data/company/types_of_products',{
+                const resProducts = await fetch('/api/data/company/types_of_products',{
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     }
                 });
-                const resMaterials = await fetch('/api//data/company/types_of_materials', {
+                const resMaterials = await fetch('/api/data/company/types_of_materials', {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,

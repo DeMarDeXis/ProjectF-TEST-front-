@@ -13,8 +13,25 @@ export const Notifications = () => {
     const [notifications, setNotifications] = useState<Notification[]>([]);
     // const wsUrl = `ws://localhost:8081/`;
     // const wsUrl = `ws://${window.location.hostname}:8081/`;
-    const wsHost = import.meta.env.VITE_WS_HOST || window.location.hostname;
-    const wsUrl = `ws://${wsHost}:8081/`;
+    // const wsHost = import.meta.env.VITE_WS_HOST || window.location.hostname;
+    // const wsUrl = `ws://${wsHost}:8081/`;
+    // const wsUrl = import.meta.env.VITE_WS_URL || window.location.hostname;
+    // const getWebSocketUrl = () => {
+    //     if (import.meta.env.VITE_WS_URL) {
+    //         return import.meta.env.VITE_WS_URL;
+    //     }
+    //
+    //     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    //     return `${protocol}//${window.location.host}/ws`;
+    // };
+    const getWebSocketUrl = () => {
+        const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+        return `${protocol}//${window.location.host}/ws`;
+    };
+
+    const wsUrl = getWebSocketUrl();
+
+    console.log('URL passed to useWebSocket:', wsUrl);
 
     useWebSocket(wsUrl, {
         onOpen: () => {
