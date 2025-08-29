@@ -9,11 +9,10 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
-// TODO: correctamente terminar el session si el usuario no esta logueado y no tenga token (10.08.2025)
-// TODO: hacer un logout (10.08.2025)
 // TODO: hacer correctamente el deploy (10.08.2025)
-// TODO: src/hooks/useWebSocket.tsx (11.08.2025)
 // TODO: src/components/Notifications.tsx (13.08.2025)
 //  retries for websocket
-//  repair production websocket
-// TODO[MAIN]: fix production proxy, next time
+// TODO: Si apiFetch funciona bien, hacer todos fetches con el
+// TODO: correctamente terminar el session si el usuario no esta logueado y no tenga token (10.08.2025)
+//  Si es un error 401, redirigir a la pagina de login
+//  Entonces, si funciona bien, quitalo
