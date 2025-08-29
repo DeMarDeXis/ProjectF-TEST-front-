@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Notifications } from "../../components/Notifications";
+import apiFetch from "../../utils/apiFetch.tsx"
 import "./contentStyle.css"
 import "./home_style.css"
 
@@ -70,13 +71,13 @@ export const MainContent = () => {
         const fetchData = async () => {
             try {
                 const jwtToken = localStorage.getItem("token")
-                const resProducts = await fetch('/api//data/company/types_of_products',{
+                const resProducts = await apiFetch('/api/data/company/types_of_products',{
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     }
                 });
-                const resMaterials = await fetch('/api//data/company/types_of_materials', {
+                const resMaterials = await fetch('/api/data/company/types_of_materials', {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,

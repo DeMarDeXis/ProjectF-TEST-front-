@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useWebSocket } from '../hooks/useWebSocket';
+import './notification.css';
 
 type Notification = {
     id: string;
@@ -11,10 +12,14 @@ type Notification = {
 
 export const Notifications = () => {
     const [notifications, setNotifications] = useState<Notification[]>([]);
-    // const wsUrl = `ws://localhost:8081/`;
-    // const wsUrl = `ws://${window.location.hostname}:8081/`;
-    const wsHost = import.meta.env.VITE_WS_HOST || window.location.hostname;
-    const wsUrl = `ws://${wsHost}:8081/`;
+    const getWebSocketUrl = () => {
+        const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+        return `${protocol}//${window.location.host}/ws`;
+    };
+
+    const wsUrl = getWebSocketUrl();
+
+    console.log('URL passed to useWebSocket:', wsUrl);
 
     useWebSocket(wsUrl, {
         onOpen: () => {
@@ -109,9 +114,12 @@ export const Notifications = () => {
     };
 
     return (
-        <div className="fixed bottom-4 right-4 w-80 z-50">
+        <div className="fixed bottom-4 right-4 w-80 z-50 flex flex-col gap-3">
             {notifications.map((notification) => (
-                <div key={notification.id} className={getNotificationStyle(notification.type)}>
+                <div
+                    key={notification.id}
+                    className={`${getNotificationStyle(notification.type)} notification`}
+                >
                     <div className="mr-2 text-xl">{getNotificationIcon(notification.type)}</div>
                     <div className="flex-1">
                         <h4 className="font-medium text-sm">{notification.title}</h4>
